@@ -18,20 +18,21 @@ abstract class _HomeController with Store {
   }
 
   @action
-  filterPreco() {
+  filterPrice() {
     _products.sort((a, b) => a.price.compareTo(b.price));
   }
 
   @action
-  filterPOPULARIDADE() {
+  filterPopularity() {
     _products.sort((a, b) => b.score.compareTo(a.score));
   }
 
   @action
-  filterORDEM_ALFABETICA() {
+  filterAlphabetical_Order() {
     _products.sort((a, b) => a.name.compareTo(b.name));
   }
 
+ 
   int get listSize {
     return _products.length;
   }

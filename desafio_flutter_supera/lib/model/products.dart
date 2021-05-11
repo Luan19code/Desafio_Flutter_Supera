@@ -1,6 +1,5 @@
 class Product {
-
-  int id;
+  String id;
   String name;
   double price;
   int score;
@@ -9,7 +8,7 @@ class Product {
   Product({this.id, this.name, this.price, this.score, this.image});
 
   Product.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'].toString();
     name = json['name'];
     price = json['price'];
     score = json['score'];

@@ -1,4 +1,5 @@
 import 'package:desafio_flutter_supera/app/screens/product/widgets/card.dart';
+import 'package:desafio_flutter_supera/controller/cart_controller.dart';
 import 'package:desafio_flutter_supera/controller/home_controller.dart';
 import 'package:desafio_flutter_supera/widgets/badge.dart';
 import 'package:desafio_flutter_supera/widgets/main_drawer.dart';
@@ -7,16 +8,17 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 enum FilterOptions {
-  PRECO,
-  POPULARIDADE,
-  ORDEM_ALFABETICA,
+  PRICE,
+  POPULARITY,
+  ALPHABETICAL_ORDER,
   All,
 }
 
 class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final HomeController home_controller = Provider.of(context);
+    final HomeController homeController = Provider.of(context);
+    final CartController cartController = Provider.of(context);
 
     return LayoutBuilder(
       builder: (context, constraints_one) {
@@ -28,33 +30,36 @@ class ProductPage extends StatelessWidget {
                 title: Text("Produtos"),
                 centerTitle: true,
                 actions: [
-                  Badge(
-                    positionedRight: 5,
-                    positionedTop: 5,
-                    value: "0",
-                    color: Colors.white,
-                    child: InkWell(
-                      onLongPress: () {},
-                      child: IconButton(
-                        iconSize: 30,
-                        icon: Icon(Icons.shopping_cart),
-                        onPressed: () {
-                          //
-                        },
-                        color: Theme.of(context).accentColor,
+                  Observer(builder: (context) {
+                    return Badge(
+                      positionedRight: 5,
+                      positionedTop: 5,
+                      value: cartController.listSize.toString() ?? "0",
+                      color: Colors.white,
+                      child: InkWell(
+                        onLongPress: () {},
+                        child: IconButton(
+                          iconSize: 30,
+                          icon: Icon(Icons.shopping_cart),
+                          onPressed: () {
+                            //
+                          },
+                          color: Theme.of(context).accentColor,
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  }),
+
                   PopupMenuButton(
                     onSelected: (value) {
                       if (value == FilterOptions.All) {
-                        home_controller.filterAll();
-                      } else if (value == FilterOptions.PRECO) {
-                        home_controller.filterPreco();
-                      } else if (value == FilterOptions.POPULARIDADE) {
-                        home_controller.filterPOPULARIDADE();
-                      } else if (value == FilterOptions.ORDEM_ALFABETICA) {
-                        home_controller.filterORDEM_ALFABETICA();
+                        homeController.filterAll();
+                      } else if (value == FilterOptions.PRICE) {
+                        homeController.filterPrice();
+                      } else if (value == FilterOptions.POPULARITY) {
+                        homeController.filterPopularity();
+                      } else if (value == FilterOptions.ALPHABETICAL_ORDER) {
+                        homeController.filterAlphabetical_Order();
                       }
                     },
                     itemBuilder: (_) => [
@@ -68,15 +73,15 @@ class ProductPage extends StatelessWidget {
                       ),
                       PopupMenuItem(
                         child: Center(child: Text("Preço")),
-                        value: FilterOptions.PRECO,
+                        value: FilterOptions.PRICE,
                       ),
                       PopupMenuItem(
                         child: Center(child: Text("Popularidade")),
-                        value: FilterOptions.POPULARIDADE,
+                        value: FilterOptions.POPULARITY,
                       ),
                       PopupMenuItem(
                         child: Center(child: Text("Ordem alfabética")),
-                        value: FilterOptions.ORDEM_ALFABETICA,
+                        value: FilterOptions.ALPHABETICAL_ORDER,
                       ),
                     ],
                   ),
@@ -87,9 +92,9 @@ class ProductPage extends StatelessWidget {
               //
               body: Observer(
                 builder: (context) {
-                  if (home_controller.listSize > 0) {
+                  if (homeController.listSize > 0) {
                     return GridView.builder(
-                      itemCount: home_controller.listSize,
+                      itemCount: homeController.listSize,
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 550,
                           childAspectRatio: 3 / 2,
@@ -100,7 +105,7 @@ class ProductPage extends StatelessWidget {
                       // ),
                       itemBuilder: (context, index) {
                         return CardWidget(
-                          product: home_controller.productsList[index],
+                          product: homeController.productsList[index],
                         );
                       },
                     );

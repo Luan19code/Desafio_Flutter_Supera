@@ -39,33 +39,33 @@ mixin _$HomeController on _HomeController, Store {
   }
 
   @override
-  dynamic filterPreco() {
+  dynamic filterPrice() {
     final _$actionInfo = _$_HomeControllerActionController.startAction(
-        name: '_HomeController.filterPreco');
+        name: '_HomeController.filterPrice');
     try {
-      return super.filterPreco();
+      return super.filterPrice();
     } finally {
       _$_HomeControllerActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic filterPOPULARIDADE() {
+  dynamic filterPopularity() {
     final _$actionInfo = _$_HomeControllerActionController.startAction(
-        name: '_HomeController.filterPOPULARIDADE');
+        name: '_HomeController.filterPopularity');
     try {
-      return super.filterPOPULARIDADE();
+      return super.filterPopularity();
     } finally {
       _$_HomeControllerActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic filterORDEM_ALFABETICA() {
+  dynamic filterAlphabetical_Order() {
     final _$actionInfo = _$_HomeControllerActionController.startAction(
-        name: '_HomeController.filterORDEM_ALFABETICA');
+        name: '_HomeController.filterAlphabetical_Order');
     try {
-      return super.filterORDEM_ALFABETICA();
+      return super.filterAlphabetical_Order();
     } finally {
       _$_HomeControllerActionController.endAction(_$actionInfo);
     }

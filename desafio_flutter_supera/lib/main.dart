@@ -5,12 +5,14 @@ import 'package:desafio_flutter_supera/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'controller/cart_controller.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
         Provider(create: (_) => new HomeController()),
+        Provider(create: (_) => new CartController()),
       ],
       child: MyApp(),
     ),

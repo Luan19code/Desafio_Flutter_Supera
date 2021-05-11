@@ -12,16 +12,52 @@ mixin _$CartController on _CartController, Store {
   final _$_cartAtom = Atom(name: '_CartController._cart');
 
   @override
-  ObservableList<Cart> get _cart {
+  ObservableMap<String, Cart> get _cart {
     _$_cartAtom.reportRead();
     return super._cart;
   }
 
   @override
-  set _cart(ObservableList<Cart> value) {
+  set _cart(ObservableMap<String, Cart> value) {
     _$_cartAtom.reportWrite(value, super._cart, () {
       super._cart = value;
     });
+  }
+
+  final _$_CartControllerActionController =
+      ActionController(name: '_CartController');
+
+  @override
+  void clear() {
+    final _$actionInfo = _$_CartControllerActionController.startAction(
+        name: '_CartController.clear');
+    try {
+      return super.clear();
+    } finally {
+      _$_CartControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addBuy(Product product) {
+    final _$actionInfo = _$_CartControllerActionController.startAction(
+        name: '_CartController.addBuy');
+    try {
+      return super.addBuy(product);
+    } finally {
+      _$_CartControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeBuy(Product product) {
+    final _$actionInfo = _$_CartControllerActionController.startAction(
+        name: '_CartController.removeBuy');
+    try {
+      return super.removeBuy(product);
+    } finally {
+      _$_CartControllerActionController.endAction(_$actionInfo);
+    }
   }
 
   @override

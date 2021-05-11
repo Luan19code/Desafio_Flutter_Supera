@@ -1,6 +1,10 @@
+import 'package:desafio_flutter_supera/controller/cart_controller.dart';
 import 'package:desafio_flutter_supera/model/products.dart';
 import 'package:desafio_flutter_supera/widgets/badge.dart';
+import 'package:desafio_flutter_supera/widgets/snack_bar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
 class CardWidget extends StatelessWidget {
   final Product product;
@@ -9,6 +13,9 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //
+    final CartController cartController = Provider.of(context);
+    //
     return LayoutBuilder(
       builder: (context, constraints) {
         // print(constraints.maxWidth);
@@ -49,23 +56,37 @@ class CardWidget extends StatelessWidget {
                     style: TextStyle(fontSize: 25, color: Colors.white),
                   ),
                 ),
-                trailing: Badge(
-                  positionedRight: 5,
-                  positionedTop: 5,
-                  value: "0",
-                  color: Colors.white,
-                  child: InkWell(
-                    onLongPress: () {},
-                    child: IconButton(
-                      iconSize: 30,
-                      icon: Icon(Icons.shopping_cart),
-                      onPressed: () {
-                        //
+                trailing: Observer(builder: (context) {
+                  return Badge(
+                    positionedRight: 5,
+                    positionedTop: 5,
+                    value: cartController.quantityProducts(product) != null
+                        ? cartController.quantityProducts(product).toString()
+                        : "0",
+                    color: Colors.white,
+                    child: InkWell(
+                      onLongPress: () {
+                        cartController.removeBuy(product);
+                        showToast(context,
+                            function: cartController.addBuy,
+                            product: product,
+                            text: "Item Removido do carrinho");
                       },
-                      color: Theme.of(context).accentColor,
+                      child: IconButton(
+                        iconSize: 30,
+                        icon: Icon(Icons.shopping_cart),
+                        onPressed: () {
+                          cartController.addBuy(product);
+                          showToast(context,
+                              function: cartController.removeBuy,
+                              product: product,
+                              text: "Item adicionado do carrinho");
+                        },
+                        color: Theme.of(context).accentColor,
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                }),
                 backgroundColor: Colors.black45,
               ),
             ),
