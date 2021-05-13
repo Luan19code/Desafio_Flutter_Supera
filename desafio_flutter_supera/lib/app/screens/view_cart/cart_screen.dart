@@ -71,6 +71,18 @@ class CartScreen extends StatelessWidget {
               ),
             ),
           )),
+          Container(
+            width: double.infinity,
+            height: 50,
+            color: Colors.black38,
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                "Comprar",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          )
         ],
       ),
     );
