@@ -1,8 +1,8 @@
 import 'package:desafio_flutter_supera/app/screens/product/widgets/card.dart';
 import 'package:desafio_flutter_supera/controller/cart_controller.dart';
 import 'package:desafio_flutter_supera/controller/home_controller.dart';
+import 'package:desafio_flutter_supera/utils/routes.dart';
 import 'package:desafio_flutter_supera/widgets/badge.dart';
-import 'package:desafio_flutter_supera/widgets/main_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +42,9 @@ class ProductPage extends StatelessWidget {
                           iconSize: 30,
                           icon: Icon(Icons.shopping_cart),
                           onPressed: () {
-                            //
+                            Navigator.of(context).pushNamed(
+                              Routes.CART,
+                            );
                           },
                           color: Theme.of(context).accentColor,
                         ),
@@ -127,8 +129,6 @@ class ProductPage extends StatelessWidget {
                   }
                 },
               ),
-
-              drawer: MainDrawer(),
             ),
           ),
         );

@@ -2,13 +2,19 @@ import 'package:desafio_flutter_supera/model/products.dart';
 import 'package:flutter/material.dart';
 
 class Cart {
-   Product product;
-   int quantidade;
-   double price;
+  String id;
+  Product product;
+  String title;
+  int amount;
+  double price;
+  double shipping;
 
   Cart({
+    @required this.id,
     @required this.product,
-    @required this.quantidade,
+    @required this.title,
+    @required this.amount,
     @required this.price,
+    @required this.shipping,
   });
 }

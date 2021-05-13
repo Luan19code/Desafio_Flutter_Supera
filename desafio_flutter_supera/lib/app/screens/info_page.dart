@@ -1,5 +1,4 @@
 import 'package:desafio_flutter_supera/controller/home_controller.dart';
-import 'package:desafio_flutter_supera/widgets/main_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -62,7 +61,7 @@ class InfoPage extends StatelessWidget {
                   );
                 },
               ),
-              drawer: MainDrawer(),
+              
             ),
           ),
         );

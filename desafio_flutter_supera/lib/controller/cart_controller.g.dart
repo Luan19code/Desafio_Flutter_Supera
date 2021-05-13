@@ -61,6 +61,28 @@ mixin _$CartController on _CartController, Store {
   }
 
   @override
+  void removeList(Product product) {
+    final _$actionInfo = _$_CartControllerActionController.startAction(
+        name: '_CartController.removeList');
+    try {
+      return super.removeList(product);
+    } finally {
+      _$_CartControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeAll() {
+    final _$actionInfo = _$_CartControllerActionController.startAction(
+        name: '_CartController.removeAll');
+    try {
+      return super.removeAll();
+    } finally {
+      _$_CartControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 

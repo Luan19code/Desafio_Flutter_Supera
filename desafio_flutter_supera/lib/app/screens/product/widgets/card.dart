@@ -18,7 +18,6 @@ class CardWidget extends StatelessWidget {
     //
     return LayoutBuilder(
       builder: (context, constraints) {
-        // print(constraints.maxWidth);
         return ClipRRect(
           borderRadius: BorderRadius.circular(
             20,

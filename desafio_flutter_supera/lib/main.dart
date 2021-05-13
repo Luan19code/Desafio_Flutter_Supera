@@ -5,6 +5,7 @@ import 'package:desafio_flutter_supera/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'app/screens/view_cart/cart_screen.dart';
 import 'controller/cart_controller.dart';
 
 void main() {
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       theme: GlobalVariables.tema(context),
       routes: {
         Routes.HOME: (_) => HomePage(),
+        Routes.CART: (context) => CartScreen(),
       },
     );
   }
